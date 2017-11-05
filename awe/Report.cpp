@@ -16,28 +16,20 @@ static IntegerIdentifier randomIdentifier() {
 Report::Report(std::string name) : name(std::move(name)), identifier(randomIdentifier()) {
 }
 
-void Report::startBenchmark(const std::string &name) {
-  if (!benchmarks.empty() && !benchmarks.back().isStopped()) {
-    throw std::runtime_error("tried to start a benchmark before stopping the current one");
-  }
-  benchmarks.emplace_back(name);
-  benchmarks.back().start();
-}
-
-void Report::stopBenchmark(unsigned long executions) {
-  if (benchmarks.empty() || benchmarks.back().isStopped()) {
-    throw std::runtime_error("tried to stop a benchmark but no benchmark is running");
-  }
-  benchmarks.back().stop(executions);
-}
-
 void Report::dump() const {
   std::cout << name << '\n';
+  std::cout << integerStore << '\n';
   for (const auto &benchmark : benchmarks) {
-    std::cout << benchmark.getName() << ": " << benchmark.getDuration().count() << " ns." << '\n';
+    const auto averageDuration = benchmark.getDuration().count() / benchmark.getExecutions();
+    std::cout << benchmark.getName() << ": " << averageDuration << " ns." << '\n';
   }
 }
 
-void Report::consume(const std::any &data) {
+void Report::benchmark(const std::string &name, unsigned long executions, std::function<int(void)> function) {
+  Benchmark benchmark(name);
+  benchmark.start();
+  integerStore = function();
+  benchmark.stop(executions);
+  benchmarks.push_back(benchmark);
 }
 }

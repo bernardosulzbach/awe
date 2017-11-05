@@ -1,36 +1,36 @@
 {
-  "source": "demos/StringAverage.cpp",
+  "source": "demos/ArithmeticSeriesSum.cpp",
   "builds": [
     {
       "name": "GCC -O0",
       "command": [
         "gcc",
-        "-std=c++1z",
-        "-O0"
+        "-O0",
+        "-std=c++1z"
       ]
     },
     {
       "name": "GCC -O1",
       "command": [
         "gcc",
-        "-std=c++1z",
-        "-O1"
+        "-O1",
+        "-std=c++1z"
       ]
     },
     {
       "name": "GCC -O2",
       "command": [
         "gcc",
-        "-std=c++1z",
-        "-O2"
+        "-O2",
+        "-std=c++1z"
       ]
     },
     {
       "name": "GCC -O3",
       "command": [
         "gcc",
-        "-std=c++1z",
-        "-O3"
+        "-O3",
+        "-std=c++1z"
       ]
     }
   ],

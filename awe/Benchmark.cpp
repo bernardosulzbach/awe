@@ -32,6 +32,10 @@ void Benchmark::stop(unsigned long executions) {
   stopped = true;
 }
 
+unsigned long Benchmark::getExecutions() const {
+  return executions;
+}
+
 bool Benchmark::isStopped() const {
   return stopped;
 }

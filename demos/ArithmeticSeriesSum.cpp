@@ -14,9 +14,8 @@ long sumUpTo(long n) {
 
 int main() {
   Awe::Report report("1 + 2 + 3 + ... + 100,000,000");
-  report.startBenchmark("sumUpTo([100 * 1000 * 1000])");
-  report.consume(sumUpTo(100 * 1000 * 1000));
-  report.stopBenchmark();
+  const auto function = []() { return static_cast<int>(sumUpTo(100 * 1000 * 1000)); };
+  report.benchmark("sumUpTo([100 * 1000 * 1000])", 1, function);
   report.dump();
   return 0;
 }

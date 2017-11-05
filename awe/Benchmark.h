@@ -18,6 +18,7 @@ public:
   explicit Benchmark(const std::string &name);
   void start();
   void stop(unsigned long executions);
+  unsigned long getExecutions() const;
   bool isStopped() const;
   std::string getName() const;
   std::chrono::high_resolution_clock::duration getDuration() const;

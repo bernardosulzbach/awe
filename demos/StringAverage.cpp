@@ -18,9 +18,8 @@ int main() {
     string += charGenerator.next();
   }
   Awe::Report report("10,000,000 Random Characters");
-  report.startBenchmark("stringAverage([10 * 1000 * 1000])");
-  report.consume(stringAverage(string));
-  report.stopBenchmark();
+  const auto function = [&string]() { return static_cast<int>(stringAverage(string)); };
+  report.benchmark("stringAverage([10 * 1000 * 1000])", 1, function);
   report.dump();
   return 0;
 }

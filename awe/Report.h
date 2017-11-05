@@ -4,7 +4,7 @@
 #include "Benchmark.h"
 #include "IntegerIdentifier.h"
 
-#include <any>
+#include <functional>
 #include <string>
 #include <utility>
 #include <vector>
@@ -15,17 +15,11 @@ private:
   std::string name;
   IntegerIdentifier identifier;
   std::vector<Benchmark> benchmarks;
-  unsigned long executions = 0;
+  int integerStore = 0;
 
 public:
   explicit Report(std::string name);
-
-  void startBenchmark(const std::string &name);
-
-  void stopBenchmark(unsigned long executions = 1);
-
-  void consume(const std::any &data);
-
+  void benchmark(const std::string &name, unsigned long executions, std::function<int(void)> function);
   void dump() const;
 };
 }
