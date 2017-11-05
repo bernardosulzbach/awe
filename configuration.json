@@ -1,0 +1,46 @@
+{
+  "source": "demos/ArithmeticSeriesSum.cpp",
+  "builds": [
+    {
+      "name": "GCC -O0",
+      "command": [
+        "gcc",
+        "-std=c++1z",
+        "-O0"
+      ]
+    },
+    {
+      "name": "GCC -O1",
+      "command": [
+        "gcc",
+        "-std=c++1z",
+        "-O1"
+      ]
+    },
+    {
+      "name": "GCC -O2",
+      "command": [
+        "gcc",
+        "-std=c++1z",
+        "-O2"
+      ]
+    },
+    {
+      "name": "GCC -O3",
+      "command": [
+        "gcc",
+        "-std=c++1z",
+        "-O3"
+      ]
+    },
+    {
+      "name": "clang -O3",
+      "command": [
+        "clang",
+        "-std=c++14",
+        "-O3"
+      ]
+    }
+  ],
+  "runs": 5
+}
