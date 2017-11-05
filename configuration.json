@@ -1,5 +1,5 @@
 {
-  "source": "demos/ArithmeticSeriesSum.cpp",
+  "source": "demos/StringAverage.cpp",
   "builds": [
     {
       "name": "GCC -O0",
@@ -30,14 +30,6 @@
       "command": [
         "gcc",
         "-std=c++1z",
-        "-O3"
-      ]
-    },
-    {
-      "name": "clang -O3",
-      "command": [
-        "clang",
-        "-std=c++14",
         "-O3"
       ]
     }

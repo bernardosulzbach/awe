@@ -16,24 +16,24 @@ if __name__ == '__main__':
     source = configuration['source']
     runs = configuration['runs']
     builds = configuration['builds']
-    if not os.path.exists("build"):
-        os.mkdir("build")
+    if not os.path.exists('build'):
+        os.mkdir('build')
     os.chdir('build')
+    subprocess.run(['cmake', '..'])
+    subprocess.run(['cmake', '--build', '.'])
     for build in builds:
-        subprocess.run(["cmake", ".."])
-        subprocess.run(["cmake", "--build", "."])
         print(build['name'])
         source_path = os.path.join('..', source)
-        awe_path = os.path.join("..", "awe")
+        awe_path = os.path.join('..', 'awe')
         arguments = build['command']
         source_filename = os.path.basename(source_path)
         executable_name = source_filename[:source_filename.rfind('.')]
         arguments.extend(['-o', executable_name])
         arguments.append(source_path)
-        arguments.extend(["-I", awe_path, "-L.", "-lawe", "-lm", "-lstdc++"])
+        arguments.extend(['-I', awe_path, '-L.', '-lawe', '-lm', '-lstdc++', '-Wl,-R.'])
         print(' '.join(arguments))
         subprocess.run(arguments)
         for run in range(runs):
-            subprocess.run([os.path.join(".", executable_name)])
+            subprocess.run([os.path.join('.', executable_name)])
 
-    os.chdir("..")
+    os.chdir('..')
